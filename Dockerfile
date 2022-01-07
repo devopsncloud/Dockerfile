@@ -1,15 +1,19 @@
 FROM centos:latest
-MAINTAINER SRIKANTH
 
-RUN yum install -y httpd \
+MAINTAINER srikanth.sama678@gmail.com
+
+RUN yum install httpd -y \
     zip \
     unzip
 
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page273/savory.zip /var/www/html
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page268/drinker.zip /var/www/html
 
 WORKDIR /var/www/html
+RUN unzip drinker.zip
+RUN cp -rvf drinker/* .
 
-RUN  unzip savory.zip
-RUN cp -rvf savory/* .
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+RUN rm -rf drinker.zip
+
+
+CMD ["/usr/sbin/httpd", "-D","FOREGROUND"]
 EXPOSE 80
